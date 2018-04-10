@@ -14,6 +14,8 @@ public class MainPage {
     private By signInPopUpPass = By.xpath("//div[@class='auth-f-i']//input[@type='password']");
     private By signInPopUpButton = By.xpath("//button[@type='submit'][contains(text(),'Войти')]");
     private By myProfileButton = By.xpath("//span[@id='header_user_menu_parent']");
+    private By searchField = By.xpath("//input[@class='rz-header-search-input-text passive']");
+    private By searchButton = By.xpath("//button[@class='btn-link-i js-rz-search-button']");
 
     public SignUpPage clickSignUpButton() {
         driver.findElement(signUpButton).click();
@@ -53,7 +55,9 @@ public class MainPage {
         return new MyProfile(driver);
     }
 
-
-
+    public MainPage clickSearch( String productName) {
+        driver.findElement(searchField).sendKeys(productName);
+        return this;
+    }
 
 }
