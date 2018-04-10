@@ -34,16 +34,16 @@ public class MainPage {
         return this;
     }
 
-    public LoginPage clickSignInPopUpButton() {
+    public MyProfile clickSignInPopUpButton() {
         driver.findElement(signInPopUpButton).click();
-        return new LoginPage(driver);
+        return new MyProfile(driver);
     }
 
-    public LoginPage login(String userEmail, String userPass) {
+    public MyProfile login(String userEmail, String userPass) {
         this.typeUserEmail(userEmail);
         this.typeUserPass(userPass);
         this.clickSignInPopUpButton();
-        return new LoginPage(driver);
+        return new MyProfile(driver);
     }
 
 

@@ -13,31 +13,32 @@ public class SignUpPage {
     private By registrationPass = By.xpath("//input[@name='password']");
     private By registrationButton = By.xpath("//button[@class='btn-link-i'][contains(text(),'Зарегистрироваться')]");
 
-    public SignUpPage typeUsername(String userName) {
+    private SignUpPage typeUsername(String userName) {
         driver.findElement(registrationUsername).sendKeys(userName);
         return this;
     }
 
-    public SignUpPage typeUserMail(String userEmail) {
+    private SignUpPage typeUserMail(String userEmail) {
         driver.findElement(registrationMail).sendKeys(userEmail);
         return this;
     }
 
-    public SignUpPage typeUserPass(String userPass) {
+    private SignUpPage typeUserPass(String userPass) {
         driver.findElement(registrationPass).sendKeys(userPass);
         return this;
     }
 
-    public MyProfile clickRegistrationButton() {
+    private MyProfile clickRegistrationButton() {
         driver.findElement(registrationButton).click();
         return new MyProfile(driver);
     }
 
-    public MyProfile signUp(String userName, String userEmail, String userPass) {
+    public MyProfile signUp(String userName, String userEmail, String userPass) throws InterruptedException {
         this.typeUsername(userName);
         this.typeUserMail(userEmail);
         this.typeUserPass(userPass);
         this.clickRegistrationButton();
+        Thread.sleep(1500);
         return new MyProfile(driver);
     }
 
