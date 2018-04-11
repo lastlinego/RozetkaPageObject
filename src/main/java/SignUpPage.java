@@ -2,6 +2,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SignUpPage {
     private WebDriver driver;
@@ -39,6 +41,7 @@ public class SignUpPage {
     }
 
     private MyProfile clickRegistrationButton() {
+        new WebDriverWait(driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@class='btn-link-i'][contains(text(),'Зарегистрироваться')]")));
         registrationButton.click();
         return new MyProfile(driver);
     }
@@ -48,7 +51,6 @@ public class SignUpPage {
         this.typeUserMail(userEmail);
         this.typeUserPass(userPass);
         this.clickRegistrationButton();
-        Thread.sleep(1500);
         return new MyProfile(driver);
     }
 

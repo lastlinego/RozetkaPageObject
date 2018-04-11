@@ -2,6 +2,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class MainPage {
@@ -9,6 +11,7 @@ public class MainPage {
 
     public MainPage(WebDriver driver) {
         this.driver = driver;
+
     }
 
     @FindBy(xpath = "//a[text()='Регистрация']")
@@ -26,7 +29,7 @@ public class MainPage {
     @FindBy(xpath = "//button[@type='submit'][contains(text(),'Войти')]")
     private WebElement signInPopUpButton;
 
-    @FindBy(xpath = "//span[@id='header_user_menu_parent']")
+    @FindBy(xpath = "//span[@id='header_user_menu_parent']/a[@name='profile']")
     private WebElement myProfileButton;
 
     @FindBy(xpath = "//input[@class='rz-header-search-input-text passive']")
@@ -78,6 +81,7 @@ public class MainPage {
     }
 
     public MyProfile clickMyProfileButton() throws InterruptedException {
+        new WebDriverWait(driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@id='header_user_menu_parent']/a[@name='profile']")));
         myProfileButton.click();
         return new MyProfile(driver);
     }
@@ -86,7 +90,6 @@ public class MainPage {
         this.typeUserEmail(userEmail);
         this.typeUserPass(userPass);
         this.clickSignInPopUpButton();
-        Thread.sleep(1500);
         return new MyProfile(driver);
     }
 
