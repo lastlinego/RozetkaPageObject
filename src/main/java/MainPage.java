@@ -42,6 +42,22 @@ public class MainPage {
         return new MyProfile(driver);
     }
 
+    public SearchResults typeInSearchField(String searchRequest) {
+        driver.findElement(searchField).sendKeys(searchRequest);
+        return new SearchResults(driver);
+    }
+
+    public SearchResults clickSearchButton() {
+        driver.findElement(searchButton).click();
+        return new SearchResults(driver);
+    }
+
+    public SearchResults searchSomething (String searchRequest) {
+        this.typeInSearchField(searchRequest);
+        this.clickSearchButton();
+        return new SearchResults(driver);
+    }
+
     public MyProfile clickMyProfileButton() throws InterruptedException {
         driver.findElement(myProfileButton).click();
         return new MyProfile(driver);
@@ -55,9 +71,6 @@ public class MainPage {
         return new MyProfile(driver);
     }
 
-    public MainPage clickSearch( String productName) {
-        driver.findElement(searchField).sendKeys(productName);
-        return this;
-    }
-
 }
+
+
