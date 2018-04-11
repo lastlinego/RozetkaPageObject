@@ -12,12 +12,16 @@ public class SignUpPage {
 
     @FindBy(xpath = "//input[@name='title']")
     private WebElement registrationUsername;
+
     @FindBy(xpath = "//input[@name='login']")
     private WebElement registrationMail;
+
     @FindBy(xpath = "//input[@name='password']")
     private WebElement registrationPass;
+
     @FindBy(xpath = "//button[@class='btn-link-i'][contains(text(),'Зарегистрироваться')]")
     private WebElement registrationButton;
+
 
     private SignUpPage typeUsername(String userName) {
         registrationUsername.sendKeys(userName);
