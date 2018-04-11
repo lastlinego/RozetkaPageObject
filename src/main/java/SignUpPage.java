@@ -1,5 +1,7 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class SignUpPage {
     private WebDriver driver;
@@ -8,28 +10,32 @@ public class SignUpPage {
         this.driver = driver;
     }
 
-    private By registrationUsername = By.xpath("//input[@name='title']");
-    private By registrationMail = By.xpath("//input[@name='login']");
-    private By registrationPass = By.xpath("//input[@name='password']");
-    private By registrationButton = By.xpath("//button[@class='btn-link-i'][contains(text(),'Зарегистрироваться')]");
+    @FindBy(xpath = "//input[@name='title']")
+    private WebElement registrationUsername;
+    @FindBy(xpath = "//input[@name='login']")
+    private WebElement registrationMail;
+    @FindBy(xpath = "//input[@name='password']")
+    private WebElement registrationPass;
+    @FindBy(xpath = "//button[@class='btn-link-i'][contains(text(),'Зарегистрироваться')]")
+    private WebElement registrationButton;
 
     private SignUpPage typeUsername(String userName) {
-        driver.findElement(registrationUsername).sendKeys(userName);
+        registrationUsername.sendKeys(userName);
         return this;
     }
 
     private SignUpPage typeUserMail(String userEmail) {
-        driver.findElement(registrationMail).sendKeys(userEmail);
+        registrationMail.sendKeys(userEmail);
         return this;
     }
 
     private SignUpPage typeUserPass(String userPass) {
-        driver.findElement(registrationPass).sendKeys(userPass);
+        registrationPass.sendKeys(userPass);
         return this;
     }
 
     private MyProfile clickRegistrationButton() {
-        driver.findElement(registrationButton).click();
+        registrationButton.click();
         return new MyProfile(driver);
     }
 

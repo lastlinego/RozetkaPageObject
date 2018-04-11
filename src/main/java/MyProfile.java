@@ -1,5 +1,8 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
 
 public class MyProfile {
     private WebDriver driver;
@@ -8,10 +11,12 @@ public class MyProfile {
         this.driver = driver;
     }
 
-    private By heading = By.xpath("//h1[contains(text(),'Личные данные')]");
+    @FindBy(xpath = "//h1[contains(text(),'Личные данные')]")
+    private WebElement heading;
 
-    public String getHeadingText() {
-        return driver.findElement(heading).getText();
+    public String getHeadingText() throws InterruptedException {
+        Thread.sleep(1500);
+        return heading.getText();
 
     }
 
