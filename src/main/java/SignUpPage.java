@@ -1,5 +1,9 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SignUpPage {
     private WebDriver driver;
@@ -8,32 +12,41 @@ public class SignUpPage {
         this.driver = driver;
     }
 
-    private By registrationUsername = By.xpath("//input[@name='title']");
-    private By registrationMail = By.xpath("//input[@name='login']");
-    private By registrationPass = By.xpath("//input[@name='password']");
-    private By registrationButton = By.xpath("//button[@class='btn-link-i'][contains(text(),'Зарегистрироваться')]");
+    @FindBy(xpath = "//input[@name='title']")
+    private WebElement registrationUsername;
 
-    public SignUpPage typeUsername(String userName) {
-        driver.findElement(registrationUsername).sendKeys(userName);
+    @FindBy(xpath = "//input[@name='login']")
+    private WebElement registrationMail;
+
+    @FindBy(xpath = "//input[@name='password']")
+    private WebElement registrationPass;
+
+    @FindBy(xpath = "//button[@class='btn-link-i'][contains(text(),'Зарегистрироваться')]")
+    private WebElement registrationButton;
+
+
+    private SignUpPage typeUsername(String userName) {
+        registrationUsername.sendKeys(userName);
         return this;
     }
 
-    public SignUpPage typeUserMail(String userEmail) {
-        driver.findElement(registrationMail).sendKeys(userEmail);
+    private SignUpPage typeUserMail(String userEmail) {
+        registrationMail.sendKeys(userEmail);
         return this;
     }
 
-    public SignUpPage typeUserPass(String userPass) {
-        driver.findElement(registrationPass).sendKeys(userPass);
+    private SignUpPage typeUserPass(String userPass) {
+        registrationPass.sendKeys(userPass);
         return this;
     }
 
-    public MyProfile clickRegistrationButton() {
-        driver.findElement(registrationButton).click();
+    private MyProfile clickRegistrationButton() {
+        new WebDriverWait(driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@class='btn-link-i'][contains(text(),'Зарегистрироваться')]")));
+        registrationButton.click();
         return new MyProfile(driver);
     }
 
-    public MyProfile signUp(String userName, String userEmail, String userPass) {
+    public MyProfile signUp(String userName, String userEmail, String userPass) throws InterruptedException {
         this.typeUsername(userName);
         this.typeUserMail(userEmail);
         this.typeUserPass(userPass);
