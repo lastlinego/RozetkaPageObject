@@ -38,10 +38,25 @@ public class MainPage {
     @FindBy(xpath = "//button[@class='btn-link-i js-rz-search-button']")
     private WebElement searchButton;
 
+    @FindBy(xpath = "//span[@class='xhr'][contains(text(), 'Корзина')]")
+    private WebElement cartButton;
+
+    @FindBy(xpath = "//h2[@class='empty-cart-title inline sprite-side']")
+    private WebElement cartHeading;
+
 
     public SignUpPage clickSignUpButton() {
         signUpButton.click();
         return new SignUpPage(driver);
+    }
+
+    public MainPage clickCartButton() {
+        cartButton.click();
+        return this;
+    }
+
+    public String getCartHeading() {
+        return cartHeading.getText();
     }
 
     public LoginPopUp clickSignInButton() {
@@ -92,7 +107,6 @@ public class MainPage {
         this.clickSignInPopUpButton();
         return new MyProfile(driver);
     }
-
 }
 
 

@@ -54,5 +54,4 @@ public class SignUpPage {
         return new MyProfile(driver);
     }
 
-
 }

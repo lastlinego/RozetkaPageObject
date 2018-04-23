@@ -15,13 +15,10 @@ public class MyProfile {
 
     public MyProfile(WebDriver driver) {
         this.driver = driver;
-
     }
 
     public String getHeadingText() throws InterruptedException {
         new WebDriverWait(driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h1[contains(text(),'Личные данные')]")));
         return heading.getText();
-
     }
-
 }
