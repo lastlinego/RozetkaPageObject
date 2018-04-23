@@ -44,10 +44,18 @@ public class MainPage {
     @FindBy(xpath = "//h2[@class='empty-cart-title inline sprite-side']")
     private WebElement cartHeading;
 
+    @FindBy(xpath = "//html//div[@class='clearfix body-header-row-top']//li[2]")
+    private WebElement creditButton;
+
 
     public SignUpPage clickSignUpButton() {
         signUpButton.click();
         return new SignUpPage(driver);
+    }
+
+    public CreditPage clickCreditButton() {
+        creditButton.click();
+        return new CreditPage(driver);
     }
 
     public MainPage clickCartButton() {
