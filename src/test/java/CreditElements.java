@@ -23,4 +23,12 @@ public class CreditElements extends TestBase {
         Assert.assertEquals(creditPage.getTitleOfTheCreditTable(), "Условия кредитования");
 
     }
+
+    @Test
+    public void checkTheAgeAlfaBank() {
+        mainPage = PageFactory.initElements(driver, MainPage.class);
+        mainPage.clickCreditButton();
+        creditPage = PageFactory.initElements(driver, CreditPage.class);
+
+    }
 }
