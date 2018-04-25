@@ -18,7 +18,14 @@ public class CreditPage {
     @FindBy(xpath = "//div[@class='credit-rules-list']/div")
     private List<WebElement> creditRules;
 
+    @FindBy(xpath = "//div[@class='rz-credit-block']/h2[contains (text(),'Условия кредитования')]")
+    private WebElement titleOfTheCreditTable;
+
     public int listOfTheCreditRules() {
       return creditRules.size();
+    }
+
+    public String getTitleOfTheCreditTable() {
+        return titleOfTheCreditTable.getText();
     }
 }

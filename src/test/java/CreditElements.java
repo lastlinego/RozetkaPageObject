@@ -13,6 +13,14 @@ public class CreditElements extends TestBase {
         mainPage.clickCreditButton();
         creditPage = PageFactory.initElements(driver, CreditPage.class);
         Assert.assertEquals(creditPage.listOfTheCreditRules(),4);
+    }
+
+    @Test
+    public void creditTableTitle() {
+        mainPage = PageFactory.initElements(driver, MainPage.class);
+        mainPage.clickCreditButton();
+        creditPage = PageFactory.initElements(driver, CreditPage.class);
+        Assert.assertEquals(creditPage.getTitleOfTheCreditTable(), "Условия кредитования");
 
     }
 }
