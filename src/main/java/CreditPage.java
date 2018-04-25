@@ -15,25 +15,10 @@ public class CreditPage {
         this.driver = driver;
     }
 
-    @FindBy(xpath = "//html//div[@class='credit-rules-list']/div[1]")
-    private WebElement creditRulesObject1;
+    @FindBy(xpath = "//div[@class='credit-rules-list']/div")
+    private List<WebElement> creditRules;
 
-    @FindBy(xpath = "//html//div[@class='credit-rules-list']/div[2]")
-    private WebElement creditRulesObject2;
-
-    @FindBy(xpath = "//html//div[@class='credit-rules-list']/div[3]")
-    private WebElement creditRulesObject3;
-
-    @FindBy(xpath = "//html//div[@class='credit-rules-list']/div[4]")
-    private WebElement creditRulesObject4;
-
-    public boolean present() {
-        try {
-            driver.findElement(By.xpath("//html//div[@class='credit-rules-list']/div[1]"));
-            return true;
-        } catch (NoSuchElementException e) {
-            return false;
-        }
-
+    public int listOfTheCreditRules() {
+      return creditRules.size();
     }
 }

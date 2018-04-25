@@ -12,7 +12,7 @@ public class CreditElements extends TestBase {
         mainPage = PageFactory.initElements(driver, MainPage.class);
         mainPage.clickCreditButton();
         creditPage = PageFactory.initElements(driver, CreditPage.class);
-        Assert.assertEquals(creditPage.present(), true);
+        Assert.assertEquals(creditPage.listOfTheCreditRules(),4);
 
     }
 }
