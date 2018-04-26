@@ -39,10 +39,15 @@ public class CreditPage {
 
     public CreditPage scrollPageToAlfaBank() {
 //        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);", ageAlfaBank);
-        actions=new Actions(driver);
+        actions = new Actions(driver);
         actions.moveToElement(ageAlfaBank);
         actions.perform();
         return this;
     }
+
+    public String getAgeAlfaBank(){
+        return ageAlfaBank.getText();
+    }
+
 
 }

@@ -30,6 +30,7 @@ public class CreditElements extends TestBase {
         mainPage.clickCreditButton();
         creditPage = PageFactory.initElements(driver, CreditPage.class);
         creditPage.scrollPageToAlfaBank();
+        Assert.assertEquals(creditPage.getAgeAlfaBank(), "21-70");
 
     }
 }
