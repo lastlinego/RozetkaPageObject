@@ -14,7 +14,15 @@ public class NotebooksPage {
     @FindBy(xpath = "//div[@class='pab-cell pab-img-45']")
     private List<WebElement> brandsList;
 
+    @FindBy(xpath = "//a[@class='m-cat-subl-i-link'][contains(text(), 'Asus')]")
+    private WebElement asusBtn;
+
     public int numberOfTheBrands() {
         return brandsList.size();
+    }
+
+    public AsusPage clickAsusBtn() {
+        asusBtn.click();
+        return new AsusPage(driver);
     }
 }

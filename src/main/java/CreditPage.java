@@ -48,4 +48,18 @@ public class CreditPage {
         return ageAlfaBank.getText();
     }
 
+//    (//td[@class='rz-credit-terms-td rz-credit-terms-td-deposit'])[5]
+
+//    public String  drtertyerte(String creditTerms, String colum) {
+//        for (int i = 1; i < driver.findElements(By.xpath("//td[@class='rz-credit-terms-td rz-credit-terms-td-deposit']")).size(); i++) {
+//            if (driver.findElement(By.xpath("(//td[@class='rz-credit-terms-td rz-credit-terms-td-deposit'])["+i+"]")).getText().equals(creditTerms)){
+//
+//            }
+//
+//        }
+//
+//        return "ME";
+//
+//    }
+
 }
