@@ -25,6 +25,17 @@ public class NotebookPageElements extends TestBase {
         asusPage = PageFactory.initElements(driver, AsusPage.class);
         Assert.assertEquals(asusPage.listOfTheAsusItems(), 32);
 
+    }
+
+    @Test
+    public void changeViewOfTheAsusPage() {
+        mainPage = PageFactory.initElements(driver, MainPage.class);
+        mainPage.clickNotebooksBtn();
+        notebooksPage = PageFactory.initElements(driver, NotebooksPage.class);
+        notebooksPage.clickAsusBtn();
+        asusPage = PageFactory.initElements(driver, AsusPage.class);
+        asusPage.changeViewToList();
+        Assert.assertEquals(asusPage.getTheTextFromLoadBtn(), "Показать еще 16 товаров");
 
     }
 }
