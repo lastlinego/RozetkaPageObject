@@ -1,6 +1,7 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -13,6 +14,8 @@ public class MainPage {
         this.driver = driver;
 
     }
+
+    Actions actions;
 
     @FindBy(xpath = "//a[text()='Регистрация']")
     private WebElement signUpButton;
@@ -46,6 +49,12 @@ public class MainPage {
 
     @FindBy(xpath = "//html//div[@class='clearfix body-header-row-top']//li[2]")
     private WebElement creditButton;
+
+    @FindBy(xpath = "//a[@href='https://rozetka.com.ua/computers-notebooks/c80253/']")
+    private WebElement categoryNotebooksBtn;
+
+    @FindBy(xpath = "//li[@class='f-menu-sub']//a[@href='https://rozetka.com.ua/notebooks/c80004/']")
+    private WebElement notebooksBtn;
 
 
     public SignUpPage clickSignUpButton() {
@@ -114,6 +123,14 @@ public class MainPage {
         this.typeUserPass(userPass);
         this.clickSignInPopUpButton();
         return new MyProfile(driver);
+    }
+
+    public NotebooksPage clickNotebooksBtn() {
+        actions = new Actions(driver);
+        actions.moveToElement(categoryNotebooksBtn).build().perform();
+        new WebDriverWait(driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//li[@class='f-menu-sub']//a[@href='https://rozetka.com.ua/notebooks/c80004/']")));
+        notebooksBtn.click();
+        return new NotebooksPage(driver);
     }
 }
 

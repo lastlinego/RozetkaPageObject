@@ -1,7 +1,4 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
@@ -29,6 +26,8 @@ public class CreditPage {
     @FindBy(xpath = "//td[@class='rz-credit-terms-td rz-credit-terms-td-age'][contains(text(),'21-70')]")
     private WebElement ageAlfaBank;
 
+    private By allTable = By.xpath("//html//div[3]/table[1]");
+
     public int listOfTheCreditRules() {
       return creditRules.size();
     }
@@ -48,6 +47,5 @@ public class CreditPage {
     public String getAgeAlfaBank(){
         return ageAlfaBank.getText();
     }
-
 
 }

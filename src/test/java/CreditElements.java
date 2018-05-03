@@ -33,4 +33,5 @@ public class CreditElements extends TestBase {
         Assert.assertEquals(creditPage.getAgeAlfaBank(), "21-70");
 
     }
+
 }
