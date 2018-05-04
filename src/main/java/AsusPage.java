@@ -23,6 +23,9 @@ public class AsusPage {
     @FindBy(xpath = "//span[@class='g-i-more-link-text']")
     private WebElement loadMoreItemsBtn;
 
+    @FindBy(xpath = "//div[@class='g-i-list available'] | //div[@class='g-i-list out_of_stock']")
+    private List<WebElement> listOfTheItems;
+
     public int listOfTheAsusItems() {
         return defaultAsusItems.size();
     }
@@ -32,9 +35,9 @@ public class AsusPage {
         return this;
     }
 
-    public String getTheTextFromLoadBtn() {
+    public int getSizeOfTheAsusDefaultList() {
         new WebDriverWait(driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@class='g-i-more-link-text']")));
-        return loadMoreItemsBtn.getText();
+        return listOfTheItems.size();
     }
 
 }
