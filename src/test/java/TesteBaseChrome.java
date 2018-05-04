@@ -1,6 +1,7 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -28,9 +29,11 @@ public class TesteBaseChrome {
 
     @BeforeMethod
     public void setupe () {
-        driver = new ChromeDriver();
+        ChromeOptions option = new ChromeOptions();
+        option.addArguments("--kiosk");
+        driver = new ChromeDriver(option);
         driver.get("https://rozetka.com.ua/");
-        driver.manage().window().maximize();
+
     }
 
 }
