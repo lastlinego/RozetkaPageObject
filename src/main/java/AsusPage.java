@@ -4,6 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
 
 import java.util.List;
 
@@ -26,6 +27,9 @@ public class AsusPage {
     @FindBy(xpath = "//div[@class='g-i-list available'] | //div[@class='g-i-list out_of_stock']")
     private List<WebElement> listOfTheItems;
 
+    @FindBy(xpath = "//div[@class='g-i-list available'] | //div[@class='g-i-list out_of_stock'] | //div[@class='g-i-list limited']")
+    private List<WebElement> listOfTheItemsLoadMore;
+
     public int listOfTheAsusItems() {
         return defaultAsusItems.size();
     }
@@ -36,8 +40,19 @@ public class AsusPage {
     }
 
     public int getSizeOfTheAsusDefaultList() {
-        new WebDriverWait(driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@class='g-i-more-link-text']")));
+        new WebDriverWait(driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='g-i-list available'] | //div[@class='g-i-list out_of_stock']")));
         return listOfTheItems.size();
+    }
+
+    public AsusPage pressLoadMoreBtn() {
+        new WebDriverWait(driver, 10).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[@class='g-i-list available'] | //div[@class='g-i-list out_of_stock']")));
+        loadMoreItemsBtn.click();
+        return this;
+    }
+
+    public int getSizeAfterPressingLoadMore() {
+        new WebDriverWait(driver, 10).until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[@class='g-i-list available'] | //div[@class='g-i-list out_of_stock'] | //div[@class='g-i-list limited']")));
+        return listOfTheItemsLoadMore.size();
     }
 
 }

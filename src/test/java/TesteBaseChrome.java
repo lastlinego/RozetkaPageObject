@@ -17,7 +17,8 @@ public class TesteBaseChrome {
     @BeforeClass
     public static void createAndStartService () throws IOException {
         service = new ChromeDriverService.Builder()
-                .usingDriverExecutable(new File("/Users/Sasha/IdeaProjects/pageobjectrozetka/driver/chromedriver"))
+//                .usingDriverExecutable(new File("/Users/Sasha/IdeaProjects/pageobjectrozetka/driver/chromedriver"))
+                .usingDriverExecutable(new File("/Users/alex/Documents/projects/firstTask/testLogin/pageObject/RozetkaPageObject/driver/chromedriver"))
                 .usingAnyFreePort()
                 .build();
         service.start();
@@ -30,8 +31,9 @@ public class TesteBaseChrome {
 
     @BeforeMethod
     public void setupe () {
+        System.setProperty("webdriver.chrome.driver","/Users/alex/Documents/projects/firstTask/testLogin/pageObject/RozetkaPageObject/driver/chromedriver");
         ChromeOptions option = new ChromeOptions();
-        option.addArguments("--kiosk");
+//        option.addArguments("--kiosk");
         driver = new ChromeDriver(option);
         driver.get("https://rozetka.com.ua/");
     }

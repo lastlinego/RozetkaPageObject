@@ -38,4 +38,16 @@ public class NotebookPageElements extends TesteBaseChrome {
         Assert.assertEquals(asusPage.getSizeOfTheAsusDefaultList(), 16);
 
     }
+
+    @Test
+    public void loadMoreItems() {
+        mainPage = PageFactory.initElements(driver, MainPage.class);
+        mainPage.clickNotebooksBtn();
+        notebooksPage = PageFactory.initElements(driver, NotebooksPage.class);
+        notebooksPage.clickAsusBtn();
+        asusPage = PageFactory.initElements(driver, AsusPage.class);
+        asusPage.changeViewToList();
+        asusPage.pressLoadMoreBtn();
+        Assert.assertEquals(asusPage.getSizeAfterPressingLoadMore(),32);
+    }
 }
