@@ -3,6 +3,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 
@@ -33,7 +34,11 @@ public class TesteBaseChrome {
         option.addArguments("--kiosk");
         driver = new ChromeDriver(option);
         driver.get("https://rozetka.com.ua/");
+    }
 
+    @AfterMethod
+    public void tearDown() {
+//        driver.quit();
     }
 
 }
