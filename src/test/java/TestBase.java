@@ -7,6 +7,7 @@ import org.testng.annotations.BeforeClass;
 
 public class TestBase {
     WebDriver driver;
+
     @BeforeClass
     public void setupe () {
         driver = new ChromeDriver();
