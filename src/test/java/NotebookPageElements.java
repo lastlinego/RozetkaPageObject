@@ -2,7 +2,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class NotebookPageElements extends TesteBaseChrome {
+public class NotebookPageElements extends TestBaseChrome {
     MainPage mainPage;
     NotebooksPage notebooksPage;
     AsusPage asusPage;

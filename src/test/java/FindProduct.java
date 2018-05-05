@@ -2,7 +2,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class FindProduct extends TesteBaseChrome {
+public class FindProduct extends TestBaseChrome {
     MainPage mainPage;
     SearchResults searchResults;
 

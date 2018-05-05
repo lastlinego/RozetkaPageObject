@@ -10,7 +10,7 @@ import org.testng.annotations.BeforeMethod;
 import java.io.File;
 import java.io.IOException;
 
-public class TesteBaseChrome {
+public class TestBaseChrome {
     private static ChromeDriverService service;
     public static WebDriver driver;
 

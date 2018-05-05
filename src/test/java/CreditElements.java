@@ -1,9 +1,8 @@
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class CreditElements extends TesteBaseChrome {
+public class CreditElements extends TestBaseChrome {
     MainPage mainPage;
     CreditPage creditPage;
 

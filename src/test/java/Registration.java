@@ -2,7 +2,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class Registration extends TesteBaseChrome {
+public class Registration extends TestBaseChrome {
     MainPage mainPage;
     SignUpPage signUpPage;
     MyProfile myProfile;
