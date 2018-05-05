@@ -17,10 +17,15 @@ public class TestBaseChrome {
     @BeforeClass
     public static void createAndStartService () throws IOException {
         service = new ChromeDriverService.Builder()
-                .usingDriverExecutable(new File("/Users/Sasha/IdeaProjects/pageobjectrozetka/driver/chromedriver"))
+                .usingDriverExecutable(new File("driver","chromedriver"))
                 .usingAnyFreePort()
                 .build();
         service.start();
+        ChromeOptions option = new ChromeOptions();
+       option.addArguments("--kiosk");
+       driver = new ChromeDriver(option);
+
+
     }
 
     @AfterClass
@@ -30,15 +35,12 @@ public class TestBaseChrome {
 
     @BeforeMethod
     public void setupe () {
-        ChromeOptions option = new ChromeOptions();
-        option.addArguments("--kiosk");
-        driver = new ChromeDriver(option);
         driver.get("https://rozetka.com.ua/");
     }
 
-    @AfterMethod
-    public void tearDown() {
+//    @AfterMethod
+//    public void tearDown() {
 //        driver.quit();
-    }
+//    }
 
 }
