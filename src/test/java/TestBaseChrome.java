@@ -22,8 +22,8 @@ public class TestBaseChrome {
                 .build();
         service.start();
         ChromeOptions option = new ChromeOptions();
-       option.addArguments("--kiosk");
-       driver = new ChromeDriver(option);
+//        option.addArguments("--kiosk");
+        driver = new ChromeDriver(option);
 
 
     }

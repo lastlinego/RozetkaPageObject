@@ -17,6 +17,9 @@ public class NotebooksPage {
     @FindBy(xpath = "//a[@class='m-cat-subl-i-link'][contains(text(), 'Asus')]")
     private WebElement asusBtn;
 
+    @FindBy(xpath = "//a[@class='m-cat-subl-i-link'][contains(text(),'10 000 грн - 12 999 грн')]")
+    private WebElement filter10kBtn;
+
     public int numberOfTheBrands() {
         return brandsList.size();
     }
@@ -25,4 +28,11 @@ public class NotebooksPage {
         asusBtn.click();
         return new AsusPage(driver);
     }
+
+    public NotebooksPageWithFilter clickFilter10kBtn() {
+        filter10kBtn.click();
+        return new NotebooksPageWithFilter(driver);
+    }
+
+
 }
