@@ -26,7 +26,13 @@ public class CreditPage {
     @FindBy(xpath = "//td[@class='rz-credit-terms-td rz-credit-terms-td-age'][contains(text(),'21-70')]")
     private WebElement ageAlfaBank;
 
-    private By allTable = By.xpath("//html//div[3]/table[1]");
+    By tableElement1 = By.className("rz-credit-terms-table");
+
+    @FindBy(className = "rz-credit-terms-table")
+    private WebElement tableElement;
+
+
+    private By listOfTableItems = By.xpath("//table[@class = 'rz-credit-terms-table']/tbody/tr[@class='rz-credit-terms-tr']");
 
     public int listOfTheCreditRules() {
       return creditRules.size();
@@ -48,18 +54,29 @@ public class CreditPage {
         return ageAlfaBank.getText();
     }
 
-//    (//td[@class='rz-credit-terms-td rz-credit-terms-td-deposit'])[5]
+    public boolean checkTheCreditTable() {
+        List<WebElement> trCollection = tableElement.findElements(listOfTableItems);
 
-//    public String  drtertyerte(String creditTerms, String colum) {
-//        for (int i = 1; i < driver.findElements(By.xpath("//td[@class='rz-credit-terms-td rz-credit-terms-td-deposit']")).size(); i++) {
-//            if (driver.findElement(By.xpath("(//td[@class='rz-credit-terms-td rz-credit-terms-td-deposit'])["+i+"]")).getText().equals(creditTerms)){
-//
-//            }
-//
-//        }
-//
-//        return "ME";
-//
-//    }
+        int rowNum, colNum;
+        rowNum = 1;
 
+        for(WebElement trElement : trCollection) {
+            List<WebElement> tdCollection = trElement.findElements(By.xpath("td"));
+            colNum=1;
+            for (WebElement tdElement : tdCollection) {
+                if (tdElement.getText().contains("0,01% на 15 месяцев")) {
+                    if (tdElement.getText().contains("15")) {
+                        return true;
+                    }
+                }
+            }
+                colNum++;
+        }
+            rowNum++;
+        return false;
+    }
 }
+
+
+
+

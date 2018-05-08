@@ -30,6 +30,9 @@ public class AsusPage {
     @FindBy(xpath = "//div[@class='g-i-list available'] | //div[@class='g-i-list out_of_stock'] | //div[@class='g-i-list limited']")
     private List<WebElement> listOfTheItemsLoadMore;
 
+    private By list = By.xpath("//div[@class='g-i-list available'] | //div[@class='g-i-list out_of_stock']");
+
+
     public int listOfTheAsusItems() {
         return defaultAsusItems.size();
     }
@@ -40,7 +43,7 @@ public class AsusPage {
     }
 
     public int getSizeOfTheAsusDefaultList() {
-        new WebDriverWait(driver, 10).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='g-i-list available'] | //div[@class='g-i-list out_of_stock']")));
+        new WebDriverWait(driver, 10).until(ExpectedConditions.presenceOfElementLocated(list));
         return listOfTheItems.size();
     }
 

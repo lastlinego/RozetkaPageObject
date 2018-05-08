@@ -1,6 +1,10 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.util.List;
 
 public class CreditElements extends TestBaseChrome {
     MainPage mainPage;
@@ -11,7 +15,7 @@ public class CreditElements extends TestBaseChrome {
         mainPage = PageFactory.initElements(driver, MainPage.class);
         mainPage.clickCreditButton();
         creditPage = PageFactory.initElements(driver, CreditPage.class);
-        Assert.assertEquals(creditPage.listOfTheCreditRules(),4);
+        Assert.assertEquals(creditPage.listOfTheCreditRules(), 4);
     }
 
     @Test
@@ -33,4 +37,12 @@ public class CreditElements extends TestBaseChrome {
 
     }
 
+    @Test
+    public void checkTheTable() {
+        mainPage = PageFactory.initElements(driver, MainPage.class);
+        mainPage.clickCreditButton();
+        creditPage = PageFactory.initElements(driver, CreditPage.class);
+        Assert.assertEquals(creditPage.checkTheCreditTable(), true);
+
+    }
 }
