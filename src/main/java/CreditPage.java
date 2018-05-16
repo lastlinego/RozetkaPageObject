@@ -57,7 +57,7 @@ public class CreditPage {
         return ageAlfaBank.getText();
     }
 
-    public String checkTheCreditTable(String nameOfTheProductPackage, String creditPeriodWithoutTheTax ) {
+    public String checkTheCreditTable(String nameOfTheProductPackage, String creditPeriodWitoutTheTax ) {
         List<WebElement> trCollection = tableElement.findElements(listOfTableItems);
 
         int rowNum, colNum;
@@ -72,8 +72,8 @@ public class CreditPage {
                     for(WebElement trElement1 : trCollection) {
                         List<WebElement> tdCollection1 = trElement.findElements(By.xpath("td"));
                         for (WebElement tdElement1 : tdCollection) {
-                            if (tdElement1.getText().equals(creditPeriodWithoutTheTax)){
-                                return "all works fine";
+                            if (tdElement1.getText().equals(creditPeriodWitoutTheTax)){
+                                return tdElement1.getText();
                             }
                         }
 
@@ -87,7 +87,20 @@ public class CreditPage {
         return "test doesn't work";
     }
 
+    private void array(){ list = new HashMap<String,String>;
+        list.put("Льготный период без комиссий, мес","rz-credit-terms-td rz-credit-terms-td-period");
+        list.put("Льготный период без комиссий, мес","rz-credit-terms-td rz-credit-terms-td-period");
+        list.put("Льготный период без комиссий, мес","rz-credit-terms-td rz-credit-terms-td-period");
+        list.put("Льготный период без комиссий, мес","rz-credit-terms-td rz-credit-terms-td-period");
+        list.put("Льготный период без комиссий, мес","rz-credit-terms-td rz-credit-terms-td-period");
+    }
+
+    Map<String, String> nameOftheMap = new HashMap<String, String>();
+
+
 }
+
+
 
 
 
