@@ -20,6 +20,9 @@ public class CreditPage {
     @FindBy(xpath = "//div[@class='credit-rules-list']/div")
     private List<WebElement> creditRules;
 
+    @FindBy(xpath = "//td[@class='rz-credit-terms-td rz-credit-terms-td-period']")
+    private List<WebElement> periodsWithoutTax;
+
     @FindBy(xpath = "//div[@class='rz-credit-block']/h2[contains (text(),'Условия кредитования')]")
     private WebElement titleOfTheCreditTable;
 
@@ -54,25 +57,28 @@ public class CreditPage {
         return ageAlfaBank.getText();
     }
 
-    public String checkTheCreditTable(String nameOfTheProductPackage, String creditPeriodWitoutTheTax ) {
+    public String checkTheCreditTable(String nameOfTheProductPackage, String creditPeriodWithoutTheTax ) {
         List<WebElement> trCollection = tableElement.findElements(listOfTableItems);
 
         int rowNum, colNum;
         rowNum = 1;
         colNum = 1;
 
-//        String nameOfTheProductPackage = "0,01% на 15 месяцев";
-//        String creditPeriodWithoutTheTax = "15";
-
         for(WebElement trElement : trCollection) {
             List<WebElement> tdCollection = trElement.findElements(By.xpath("td"));
             for (WebElement tdElement : tdCollection) {
                 if (tdElement.getText().equals(nameOfTheProductPackage)) {
 
-                    for (int i = 2; i < driver.findElements(By.xpath("//td[@class='rz-credit-terms-td rz-credit-terms-td-period']")).size(); i++) {
-                        if (driver.findElement(By.xpath("//td[@class='rz-credit-terms-td rz-credit-terms-td-period']")).getText().equals(creditPeriodWitoutTheTax));
+                    for(WebElement trElement1 : trCollection) {
+                        List<WebElement> tdCollection1 = trElement.findElements(By.xpath("td"));
+                        for (WebElement tdElement1 : tdCollection) {
+                            if (tdElement1.getText().equals(creditPeriodWithoutTheTax)){
+                                return "all works fine";
+                            }
+                        }
+
                     }
-                        return "all works fine";
+
                 }
             }
                 colNum++;
@@ -80,21 +86,6 @@ public class CreditPage {
             rowNum++;
         return "test doesn't work";
     }
-
-//    private void array(){
-//        list = new HashMap<String,String>;
-//        list.put("Льготный период без комиссий, мес","rz-credit-terms-td rz-credit-terms-td-period");
-//        list.put("Льготный период без комиссий, мес","rz-credit-terms-td rz-credit-terms-td-period");
-//        list.put("Льготный период без комиссий, мес","rz-credit-terms-td rz-credit-terms-td-period");
-//        list.put("Льготный период без комиссий, мес","rz-credit-terms-td rz-credit-terms-td-period");
-//        list.put("Льготный период без комиссий, мес","rz-credit-terms-td rz-credit-terms-td-period");
-//    }
-
-
-
-
-
-
 
 }
 
