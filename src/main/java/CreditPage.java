@@ -54,20 +54,23 @@ public class CreditPage {
         return ageAlfaBank.getText();
     }
 
-    public String checkTheCreditTable() {
+    public String checkTheCreditTable(String nameOfTheProductPackage, String creditPeriodWitoutTheTax ) {
         List<WebElement> trCollection = tableElement.findElements(listOfTableItems);
 
         int rowNum, colNum;
         rowNum = 1;
         colNum = 1;
 
+//        String nameOfTheProductPackage = "0,01% на 15 месяцев";
+//        String creditPeriodWithoutTheTax = "15";
+
         for(WebElement trElement : trCollection) {
             List<WebElement> tdCollection = trElement.findElements(By.xpath("td"));
             for (WebElement tdElement : tdCollection) {
-                if (tdElement.getText().contains("0,01% на 15 месяцев")) {
+                if (tdElement.getText().equals(nameOfTheProductPackage)) {
 
                     for (int i = 2; i < driver.findElements(By.xpath("//td[@class='rz-credit-terms-td rz-credit-terms-td-period']")).size(); i++) {
-                        if (driver.findElement(By.xpath("(//td[@class='rz-credit-terms-td rz-credit-terms-td-period'])[1]")).getText().contains("15"));
+                        if (driver.findElement(By.xpath("//td[@class='rz-credit-terms-td rz-credit-terms-td-period']")).getText().equals(creditPeriodWitoutTheTax));
                     }
                         return "all works fine";
                 }
