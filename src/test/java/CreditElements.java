@@ -42,7 +42,7 @@ public class CreditElements extends TestBaseChrome {
         mainPage = PageFactory.initElements(driver, MainPage.class);
         mainPage.clickCreditButton();
         creditPage = PageFactory.initElements(driver, CreditPage.class);
-        Assert.assertEquals(creditPage.checkTheCreditTable(), true);
+        Assert.assertEquals(creditPage.checkTheCreditTable(), "all works fine");
 
     }
 }

@@ -2,13 +2,13 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.NoSuchElementException;
 
 
 public class CreditPage {
     WebDriver driver;
+    HashMap<String,String> list;
 
     public CreditPage(WebDriver driver) {
         this.driver = driver;
@@ -32,7 +32,7 @@ public class CreditPage {
     private WebElement tableElement;
 
 
-    private By listOfTableItems = By.xpath("//table[@class = 'rz-credit-terms-table']/tbody/tr[@class='rz-credit-terms-tr']");
+    private By listOfTableItems = By.xpath("//div[@class='rz-credit-block'][1]/table/tbody/tr[@class='rz-credit-terms-tr']");
 
     public int listOfTheCreditRules() {
       return creditRules.size();
@@ -54,27 +54,45 @@ public class CreditPage {
         return ageAlfaBank.getText();
     }
 
-    public boolean checkTheCreditTable() {
+    public String checkTheCreditTable() {
         List<WebElement> trCollection = tableElement.findElements(listOfTableItems);
 
         int rowNum, colNum;
         rowNum = 1;
+        colNum = 1;
 
         for(WebElement trElement : trCollection) {
             List<WebElement> tdCollection = trElement.findElements(By.xpath("td"));
-            colNum=1;
             for (WebElement tdElement : tdCollection) {
                 if (tdElement.getText().contains("0,01% на 15 месяцев")) {
-                    if (tdElement.getText().contains("15")) {
-                        return true;
+
+                    for (int i = 2; i < driver.findElements(By.xpath("//td[@class='rz-credit-terms-td rz-credit-terms-td-period']")).size(); i++) {
+                        if (driver.findElement(By.xpath("(//td[@class='rz-credit-terms-td rz-credit-terms-td-period'])[1]")).getText().contains("15"));
                     }
+                        return "all works fine";
                 }
             }
                 colNum++;
         }
             rowNum++;
-        return false;
+        return "test doesn't work";
     }
+
+//    private void array(){
+//        list = new HashMap<String,String>;
+//        list.put("Льготный период без комиссий, мес","rz-credit-terms-td rz-credit-terms-td-period");
+//        list.put("Льготный период без комиссий, мес","rz-credit-terms-td rz-credit-terms-td-period");
+//        list.put("Льготный период без комиссий, мес","rz-credit-terms-td rz-credit-terms-td-period");
+//        list.put("Льготный период без комиссий, мес","rz-credit-terms-td rz-credit-terms-td-period");
+//        list.put("Льготный период без комиссий, мес","rz-credit-terms-td rz-credit-terms-td-period");
+//    }
+
+
+
+
+
+
+
 }
 
 
