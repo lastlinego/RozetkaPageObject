@@ -34,7 +34,7 @@ public class TestBaseChrome {
     }
 
     @BeforeMethod
-    public void setupe () {
+    public void setup () {
         driver.get("https://rozetka.com.ua/");
     }
 

@@ -8,14 +8,13 @@ import java.util.NoSuchElementException;
 
 public class CreditPage {
     WebDriver driver;
-    HashMap<String,String> list;
+    HashMap<String, String> list;
 
     public CreditPage(WebDriver driver) {
         this.driver = driver;
     }
 
-     Actions actions;
-
+    Actions actions;
 
     @FindBy(xpath = "//div[@class='credit-rules-list']/div")
     private List<WebElement> creditRules;
@@ -29,16 +28,16 @@ public class CreditPage {
     @FindBy(xpath = "//td[@class='rz-credit-terms-td rz-credit-terms-td-age'][contains(text(),'21-70')]")
     private WebElement ageAlfaBank;
 
-    By tableElement1 = By.className("rz-credit-terms-table");
-
     @FindBy(className = "rz-credit-terms-table")
-    private WebElement tableElement;
-
+    private WebElement tableElement1;
 
     private By listOfTableItems = By.xpath("//div[@class='rz-credit-block'][1]/table/tbody/tr[@class='rz-credit-terms-tr']");
 
+    @FindBy(xpath = "//td[@class='rz-credit-terms-td']")
+    List<WebElement> columnNameList1;
+
     public int listOfTheCreditRules() {
-      return creditRules.size();
+        return creditRules.size();
     }
 
     public String getTitleOfTheCreditTable() {
@@ -53,53 +52,41 @@ public class CreditPage {
         return this;
     }
 
-    public String getAgeAlfaBank(){
+    public String getAgeAlfaBank() {
         return ageAlfaBank.getText();
     }
 
-    public String checkTheCreditTable(String nameOfTheProductPackage, String creditPeriodWitoutTheTax ) {
-        List<WebElement> trCollection = tableElement.findElements(listOfTableItems);
+    @FindBy(className = "rz-credit-terms-table")
+    private WebElement tableElement;
 
-        int rowNum, colNum;
-        rowNum = 1;
-        colNum = 1;
+    By rows = By.xpath("//tr[@class='rz-credit-terms-tr']");
 
-        for(WebElement trElement : trCollection) {
-            List<WebElement> tdCollection = trElement.findElements(By.xpath("td"));
-            for (WebElement tdElement : tdCollection) {
-                if (tdElement.getText().equals(nameOfTheProductPackage)) {
+    @FindBy (xpath = "//td[@class='rz-credit-terms-td rz-credit-terms-td-deposit']")
+    List<WebElement> depositTermsList;
 
-                    for(WebElement trElement1 : trCollection) {
-                        List<WebElement> tdCollection1 = trElement.findElements(By.xpath("td"));
-                        for (WebElement tdElement1 : tdCollection) {
-                            if (tdElement1.getText().equals(creditPeriodWitoutTheTax)){
-                                return tdElement1.getText();
-                            }
-                        }
+    By columnNameList = By.xpath("//td[@class='rz-credit-terms-td']");
 
+
+    public String checkTheCreditTable(String nameOfTheProductPackage, String columnName ) {
+        List<WebElement> rowList = tableElement.findElements(rows);
+        List<WebElement> columnList = tableElement.findElements(columnNameList);
+
+        for (WebElement row : rowList) {
+            if (row.getText().contains(nameOfTheProductPackage)) {
+                for (int i = 0; i < columnList.size(); i++) {
+                    WebElement result = columnList.get(i);
+                    if (result.getText().contains(columnName)) {
+                        return row.findElements(By.className("rz-credit-terms-td")).get(i).getText();
                     }
-
                 }
             }
-                colNum++;
         }
-            rowNum++;
-        return "test doesn't work";
+
+        return "not found";
+
     }
-
-    private void array(){ list = new HashMap<String,String>;
-        list.put("Льготный период без комиссий, мес","rz-credit-terms-td rz-credit-terms-td-period");
-        list.put("Льготный период без комиссий, мес","rz-credit-terms-td rz-credit-terms-td-period");
-        list.put("Льготный период без комиссий, мес","rz-credit-terms-td rz-credit-terms-td-period");
-        list.put("Льготный период без комиссий, мес","rz-credit-terms-td rz-credit-terms-td-period");
-        list.put("Льготный период без комиссий, мес","rz-credit-terms-td rz-credit-terms-td-period");
-    }
-
-    Map<String, String> nameOftheMap = new HashMap<String, String>();
-
 
 }
-
 
 
 
